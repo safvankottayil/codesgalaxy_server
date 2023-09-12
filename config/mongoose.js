@@ -1,5 +1,7 @@
 const mongoose=require('mongoose')
 const mongooseConnection=()=>{
-    mongoose.connect('mongodb://127.0.0.1:27017/codesgalaxy');
+    mongoose.connect('mongodb+srv://safvankottayil:safvankottayil@cluster0.bv7cs5g.mongodb.net/Ecommerce?retryWrites=true&w=majority').then(res=>{
+        console.log('connected');
+    })
 }
 module.exports={mongooseConnection}
