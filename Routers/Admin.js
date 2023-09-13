@@ -7,9 +7,10 @@ const {
   SearchUsers,
   GetTutrials,
   TutorialVerify,
-  Getpage,Pageverify
+  Getpage,Pageverify, GetDashbordData
 } = require("../controllers/Admin/AdminControllers");
 const router = express.Router();
+router.get('/',GetDashbordData)
 router.post("/login", AdminLogin);
 router.route("/users").get(verifyAdminToken,ShowUsers).patch(verifyAdminToken,BanUsers);
 router.get("/searchUsers",verifyAdminToken, SearchUsers);
