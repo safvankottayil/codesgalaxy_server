@@ -1,6 +1,8 @@
 const mongoose=require('mongoose')
+const dotenv=require('dotenv').config();
+
 const mongooseConnection=()=>{
-    mongoose.connect('mongodb+srv://safvankottayil:safvankottayil@cluster0.bv7cs5g.mongodb.net/codesgalaxy?retryWrites=true&w=majority').then(res=>{
+    mongoose.connect(process.env.MONGO_URL).then(res=>{
         console.log('connected');
     })
 }
