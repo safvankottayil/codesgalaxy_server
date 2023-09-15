@@ -6,7 +6,7 @@ const { ObjectId } = mongoose.Types;
 module.exports = {
   ChatingUsers: async (req, res) => {
     try {
-        const User=req.User
+      const User=req.User
       const Users = await Usershema.find({},{image:1,name:1,email:1});
       res.json({ status: true, Users,UserID:User._id });
     } catch (err) {

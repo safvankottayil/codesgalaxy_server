@@ -88,7 +88,6 @@ module.exports = {
   },
   GetTutrials: async (req, res) => {
     try {
-      console.log(1212);
       const Tutorials = await TutorialSchema.find()
         .populate("UserId")
         .sort({ isVerify: 1 });
@@ -115,7 +114,6 @@ module.exports = {
       const { id } = req.query;
       const tutorial = await TutorialSchema.findOne({ _id: id }, { title: 1 });
       const page = await pageSchema.find({ Tutorial_id: id });
-      console.log(page);
       const table = [];
       page.forEach((value, j) => {
         const Table = [];
@@ -128,7 +126,6 @@ module.exports = {
         });
         table[j] = Table;
       });
-      console.log(table);
       res.json({ status: true, page, name: tutorial.title, Table: table });
     } catch (err) {
       res.json({ status: false, type: "err", err });

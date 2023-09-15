@@ -18,6 +18,14 @@ const AdminRouter = require("./Routers/Admin");
 app.use("/admin", AdminRouter);
 app.use("/", UserRouter);
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // You can also specify other CORS headers as needed
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 const server = app.listen(process.env.PORT, () => {
   console.log("server start");
 });
