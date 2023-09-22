@@ -157,13 +157,12 @@ module.exports = {
   },
   GetShowCategoryTutorials: async (req, res) => {
     try {
-      const { category } = req.params;
-      console.log(category);
+      const {category} = req.params;
       const Category = await TutorialCategorySchema.findOne({
         category: category,
       });
       if (Category) {
-        const Tutorials = await TutorialSchema.find({ category: Category._id });
+        const Tutorials = await TutorialSchema.find({ category: Category._id }).populate('UserId')
         console.log(Tutorials);
         res.json({ status: true, Tutorials });
       } else {
@@ -172,12 +171,13 @@ module.exports = {
           console.log(char);
           const Tutorials = await TutorialSchema.find({
             $or: [{ title: { $regex: `^${char}` } }],
-          });
+          }).populate('UserId')
           res.json({ status: true, Tutorials });
+        }else{
+          res.json({status:false,type:'err',err})
         }
       }
     } catch (err) {
-      console.log(err);
       res.json({ status: false, type: "err", err });
     }
   },
