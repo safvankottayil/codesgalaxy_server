@@ -163,7 +163,6 @@ module.exports = {
       });
       if (Category) {
         const Tutorials = await TutorialSchema.find({ category: Category._id }).populate('UserId')
-        console.log(Tutorials);
         res.json({ status: true, Tutorials });
       } else {
         if (category.startsWith("search=")) {
