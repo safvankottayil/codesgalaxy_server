@@ -9,7 +9,7 @@ module.exports = {
     try {
       const questions = await CommunitySchema.find({})
         .sort({ _id: -1 })
-        .populate("tags.tag_id");
+        .populate("tags.tag_id",'UserId');
       res.json({ status: true, questions });
     } catch (err) {
       console.log(err);
